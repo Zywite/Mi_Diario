@@ -1,11 +1,10 @@
 <?php
-// Archivo de ejemplo para la conexión a la base de datos
-// Copia este archivo como conex.php y ajusta los valores
-
-$servername = "localhost";     // Tu servidor de base de datos
-$username = "tu_usuario";      // Tu usuario de MySQL
-$password = "tu_password";     // Tu contraseña de MySQL
-$dbname = "mi_diario_lectura"; // Nombre de tu base de datos
+// Archivo de conexión a la base de datos
+// NOTA: Deberás modificar estos valores con tus credenciales reales
+$servername = "localhost";
+$username = "root"; 
+$password = "";      
+$dbname = "mi_diario_lectura";
 
 try {
     $conn = new mysqli($servername, $username, $password, $dbname);
