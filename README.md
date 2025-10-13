@@ -1,11 +1,28 @@
-# Mi Diario de Lectura - Instrucciones de Instalación
+# Mi Diario de Lectura
 
-## Requisitos Previos
+Una aplicación web para gestionar y visualizar tu biblioteca personal de libros.
+
+## 📋 Requisitos Previos
 - PHP 7.4 o superior
 - MySQL 5.7 o superior
 - Servidor web (Apache/Nginx)
+- Git instalado
 
-## Pasos de Instalación Local (XAMPP)
+## 🚀 Instrucciones de Instalación
+
+### Método 1: Clonación desde GitHub
+1. **Clonar el Repositorio**
+```bash
+git clone https://github.com/Zywite/Mi_Diario.git
+cd Mi_Diario
+```
+
+### Método 2: Instalación Manual
+1. **Descargar el Código**
+   - Descarga el ZIP desde https://github.com/Zywite/Mi_Diario
+   - Descomprime en tu directorio de trabajo
+
+### Configuración del Proyecto (Ambos Métodos)
 
 1. **Instalar XAMPP**
    - Descarga XAMPP desde: https://www.apachefriends.org/
