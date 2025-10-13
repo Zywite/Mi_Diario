@@ -1,0 +1,31 @@
+/* Lista de libros en Admin */
+#book-list-admin li {
+    background: #b2ebf2;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between; /* Botones a la derecha */
+    align-items: center;
+    transition: background 0.3s ease;
+}
+
+#book-list-admin li:hover {
+    background: #4dd0e1;
+}
+
+/* Botones Editar y Eliminar dentro de la lista */
+#book-list-admin .btn-container {
+    display: flex;   /* Poner botones en fila */
+    gap: 5px;        /* Separación entre botones */
+}
+
+#book-list-admin button {
+    background: #01579b;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+}
+
+#book-list-admin button:hover {
+    background: #0288d1;
+}

@@ -1,0 +1,43 @@
+[
+  {
+    "id": 1,
+    "titulo": "Harry Potter y La Piedra Filosofal",
+    "autor": "J.K. Rowling",
+    "genero": "Ficción",
+    "imagen": "hp1.jpg",
+    "calificacion": 5
+  },
+  {
+    "id": 2,
+    "titulo": "1984",
+    "autor": "George Orwell",
+    "genero": "Distopía",
+    "imagen": "1984.jpg",
+    "calificacion": 4
+  },
+  {
+    "id": 3,
+    "titulo": "Cien años de soledad",
+    "autor": "Gabriel García Márquez",
+    "genero": "Realismo mágico",
+    "imagen": "cien.jpg",
+    "calificacion": 5
+  },
+  {
+    "id": 4,
+    "titulo": "Harry Potter y El Prisionero de Azkaban",
+    "autor": "J. K. Rowling",
+    "genero": "Ficción",
+    "imagen": "hp3.jpg",
+    "calificacion": 5
+  },
+  {
+    "id": 5,
+    "titulo": "El Hobbit",
+    "autor": "John Ronald Reuel Tolkien",
+    "genero": "Ficción",
+    "imagen": "lotr.jpg",
+    "calificacion": 5
+  }
+]
+

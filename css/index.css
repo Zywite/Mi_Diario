@@ -1,0 +1,70 @@
+/* Tarjetas de libros */
+.book-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+}
+
+.book-card {
+    background: #fff;
+    width: 200px;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.book-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.book-card img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* Tabla comparativa  */
+#compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+#compare-table th, #compare-table td {
+    padding: 12px 15px;
+    border: 1px solid #b2ebf2;
+    text-align: left;
+}
+
+#compare-table th {
+    background: #0288d1;
+    color: #fff;
+    font-weight: 700;
+}
+
+#compare-table tbody tr:nth-child(even) {
+    background-color: #f4faff;
+}
+
+#compare-table tbody tr:hover {
+    background-color: #e0f7fa;
+}
+
+/* Search container */
+.search-container {
+    margin-bottom: 25px;
+}
+
+#search-input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #0288d1;
+    font-size: 1rem;
+}
