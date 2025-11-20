@@ -1,10 +1,10 @@
 <?php
 // Archivo de conexión a la base de datos
 // NOTA: Deberás modificar estos valores con tus credenciales reales
-$servername = "localhost";
-$username = "root"; 
-$password = "";      
-$dbname = "mi_diario_lectura";
+ $servername = "mysql.inf.uct.cl";
+ $username = "joaquin_carrasco";
+ $password = "Strict0-Promptly5";
+ $dbname = "A2025_joaquin_carrasco";
 
 try {
     $conn = new mysqli($servername, $username, $password, $dbname);

@@ -1,242 +1,170 @@
-// Clase principal para gestionar libros
 class BookManager {
     constructor() {
-        this.books = [];
-        this.editIndex = null;
-        this.list = document.getElementById("book-list-admin");
-        this.addForm = document.getElementById("add-book-form");
-        this.submitBtn = document.getElementById("submit-btn");
-        this.saveBtn = document.getElementById("save-btn");
-        
-        // Inicializar
+        // Formulario y botones
+        this.form = document.getElementById('add-book-form');
+        this.bookIdInput = document.getElementById('book_id');
+        this.tituloInput = document.getElementById('titulo');
+        this.autorInput = document.getElementById('autor');
+        this.generoInput = document.getElementById('genero');
+        this.imagenInput = document.getElementById('imagen');
+        this.calificacionInput = document.getElementById('calificacion');
+        this.submitBtn = document.getElementById('submit-btn');
+        this.saveBtn = document.getElementById('save-btn');
+        this.cancelBtn = document.getElementById('cancel-btn');
+
+        // Lista de libros
+        this.bookListContainer = document.getElementById('book-list-admin');
+
         this.init();
-        
-        // Vincular eventos
-        this.bindEvents();
-        
-        console.log('BookManager: Instancia creada');
     }
 
-    /**
-     * Inicializa el gestor de libros
-     */
     init() {
-        console.log('BookManager: Iniciando...');
-        this.loadBooks(this);
-        this.saveBtn.style.display = "none";
+        this.bindEvents();
+        this.loadBooks();
     }
 
-    /**
-     * Vincula los eventos del formulario
-     */
     bindEvents() {
-        console.log('BookManager: Vinculando eventos...');
-        this.addForm.addEventListener('submit', (e) => this.handleSubmit(e, this));
-        this.saveBtn.addEventListener('click', (e) => this.handleSave(e, this));
+        this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+        this.saveBtn.addEventListener('click', () => this.handleSave());
+        this.cancelBtn.addEventListener('click', () => this.resetForm());
     }
 
-    /**
-     * Carga los libros desde el servidor
-     * @param {BookManager} context - Contexto del BookManager
-     */
-    loadBooks(context) {
-        console.log('BookManager: Cargando libros...');
+    loadBooks() {
         fetch('php/list_books.php')
             .then(res => res.json())
-            .then(data => {
-                context.books = data;
-                context.renderBooks();
+            .then(books => {
+                this.renderBooks(books);
             })
             .catch(err => {
                 console.error('Error al cargar libros:', err);
-                alert('Error al cargar los libros. Por favor, intenta de nuevo.');
+                alert('Error al cargar los libros.');
             });
     }
 
-    /**
-     * Renderiza la lista de libros
-     */
-    renderBooks() {
-        console.log('BookManager: Renderizando libros...');
-        this.list.innerHTML = "";
+    renderBooks(books) {
+        this.bookListContainer.innerHTML = '';
+        if (books.length === 0) {
+            this.bookListContainer.innerHTML = '<li class="list-group-item">No hay libros para mostrar.</li>';
+            return;
+        }
 
-        this.books.forEach((book) => {
-            const li = document.createElement("li");
-            li.innerHTML = `<span>${book.titulo} (${book.autor}) - Cal: ${book.calificacion}</span>`;
+        books.forEach(book => {
+            const li = document.createElement('li');
+            // Bootstrap: Item de grupo de lista con flexbox para alinear contenido
+            li.className = 'list-group-item d-flex justify-content-between align-items-center';
+            
+            const stars = '★'.repeat(book.calificacion) + '☆'.repeat(5 - book.calificacion);
 
-            // Botón Editar
-            const editBtn = document.createElement("button");
-            editBtn.textContent = "Editar";
-            editBtn.addEventListener("click", () => this.handleEdit(book));
+            li.innerHTML = `
+                <div>
+                    <h5 class="mb-1">${book.titulo}</h5>
+                    <small class="text-muted">${book.autor}</small>
+                </div>
+                <div>
+                    <!-- Bootstrap: Badge para la calificación -->
+                    <span class="badge bg-primary rounded-pill me-3">Cal: ${stars}</span>
+                    <!-- Bootstrap: Botones pequeños para las acciones -->
+                    <button class="btn btn-sm btn-outline-secondary me-1">Editar</button>
+                    <button class="btn btn-sm btn-outline-danger">Eliminar</button>
+                </div>
+            `;
 
-            // Botón Eliminar
-            const deleteBtn = document.createElement("button");
-            deleteBtn.textContent = "Eliminar";
-            deleteBtn.addEventListener("click", () => this.handleDelete(book.id));
+            // Asignar eventos a los botones creados
+            li.querySelector('.btn-outline-secondary').addEventListener('click', () => this.handleEdit(book));
+            li.querySelector('.btn-outline-danger').addEventListener('click', () => this.handleDelete(book.id));
 
-            // Contenedor para alinear botones
-            const btnContainer = document.createElement("div");
-            btnContainer.className = "btn-container";
-            btnContainer.appendChild(editBtn);
-            btnContainer.appendChild(deleteBtn);
-
-            li.appendChild(btnContainer);
-            this.list.appendChild(li);
+            this.bookListContainer.appendChild(li);
         });
     }
 
-    /**
-     * Maneja el envío del formulario para nuevo libro
-     * @param {Event} e - Evento del formulario
-     * @param {BookManager} context - Contexto del BookManager
-     */
-    handleSubmit(e, context) {
-        e.preventDefault();
-        console.log('BookManager: Manejando envío de nuevo libro...');
-
-        const bookData = {
-            titulo: document.getElementById("titulo").value,
-            autor: document.getElementById("autor").value,
-            genero: document.getElementById("genero").value,
-            imagen: document.getElementById("imagen").value,
-            calificacion: parseInt(document.getElementById("calificacion").value)
-        };
-
-        fetch('php/save_book.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(bookData)
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                alert('Libro guardado exitosamente');
-                context.addForm.reset();
-                context.loadBooks(context);
-                this.updateIndex();
-            } else {
-                throw new Error(data.error || 'Error al guardar el libro');
-            }
-        })
-        .catch(err => {
-            console.error('Error:', err);
-            alert('Error al guardar el libro. Por favor, intenta de nuevo.');
-        });
+    resetForm() {
+        this.form.reset();
+        this.bookIdInput.value = ''; // Limpiar el ID oculto
+        this.submitBtn.style.display = 'block';
+        this.saveBtn.style.display = 'none';
+        this.cancelBtn.style.display = 'none';
     }
 
-    /**
-     * Maneja la edición de un libro
-     * @param {Object} book - Libro a editar
-     */
     handleEdit(book) {
-        console.log('BookManager: Preparando edición de libro:', book);
-        
-        // Llenar el formulario con los datos del libro
-        document.getElementById("titulo").value = book.titulo;
-        document.getElementById("autor").value = book.autor;
-        document.getElementById("genero").value = book.genero;
-        document.getElementById("imagen").value = book.imagen;
-        document.getElementById("calificacion").value = book.calificacion;
+        // Llenar el formulario
+        this.bookIdInput.value = book.id;
+        this.tituloInput.value = book.titulo;
+        this.autorInput.value = book.autor;
+        this.generoInput.value = book.genero;
+        this.imagenInput.value = book.imagen;
+        this.calificacionInput.value = book.calificacion;
 
-        // Guardar el ID del libro que se está editando
-        this.editIndex = book.id;
-        
         // Cambiar visibilidad de botones
-        this.submitBtn.style.display = "none";
-        this.saveBtn.style.display = "inline-block";
+        this.submitBtn.style.display = 'none';
+        this.saveBtn.style.display = 'block';
+        this.cancelBtn.style.display = 'block';
+        
+        // Scroll hacia el formulario
+        this.form.scrollIntoView({ behavior: 'smooth' });
     }
 
-    /**
-     * Maneja el guardado de cambios en un libro existente
-     * @param {Event} e - Evento del botón
-     * @param {BookManager} context - Contexto del BookManager
-     */
-    handleSave(e, context) {
-        e.preventDefault();
-        console.log('BookManager: Guardando cambios en libro...');
+    handleDelete(bookId) {
+        if (!confirm('¿Estás seguro de que deseas eliminar este libro?')) return;
 
+        fetch('php/delete_book.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: bookId })
+        })
+        .then(res => res.json())
+        .then(response => {
+            if (response.success) {
+                this.loadBooks();
+            } else {
+                alert(response.error || 'No se pudo eliminar el libro.');
+            }
+        })
+        .catch(err => console.error('Error al eliminar:', err));
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        this.saveBook('php/save_book.php');
+    }
+
+    handleSave() {
+        this.saveBook('php/update_book.php');
+    }
+
+    saveBook(url) {
         const bookData = {
-            id: context.editIndex,
-            titulo: document.getElementById("titulo").value,
-            autor: document.getElementById("autor").value,
-            genero: document.getElementById("genero").value,
-            imagen: document.getElementById("imagen").value,
-            calificacion: parseInt(document.getElementById("calificacion").value)
+            id: this.bookIdInput.value,
+            titulo: this.tituloInput.value,
+            autor: this.autorInput.value,
+            genero: this.generoInput.value,
+            imagen: this.imagenInput.value,
+            calificacion: parseInt(this.calificacionInput.value)
         };
 
-        fetch('php/update_book.php', {
+        // Validar que los campos no estén vacíos
+        if (!bookData.titulo || !bookData.autor || !bookData.genero || !bookData.imagen || !bookData.calificacion) {
+            alert('Todos los campos son obligatorios.');
+            return;
+        }
+
+        fetch(url, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(bookData)
         })
         .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                alert('Libro actualizado exitosamente');
-                context.addForm.reset();
-                context.editIndex = null;
-                context.submitBtn.style.display = "inline-block";
-                context.saveBtn.style.display = "none";
-                context.loadBooks(context);
-                this.updateIndex();
+        .then(response => {
+            if (response.success) {
+                this.resetForm();
+                this.loadBooks();
             } else {
-                throw new Error(data.error || 'Error al actualizar el libro');
+                alert(response.error || 'Ocurrió un error al guardar el libro.');
             }
         })
-        .catch(err => {
-            console.error('Error:', err);
-            alert('Error al actualizar el libro. Por favor, intenta de nuevo.');
-        });
-    }
-
-    /**
-     * Maneja la eliminación de un libro
-     * @param {number} id - ID del libro a eliminar
-     */
-    handleDelete(id) {
-        console.log('BookManager: Eliminando libro ID:', id);
-        
-        if (confirm('¿Estás seguro de que deseas eliminar este libro?')) {
-            fetch('php/delete_book.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ id })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Libro eliminado exitosamente');
-                    this.loadBooks(this);
-                    this.updateIndex();
-                } else {
-                    throw new Error(data.error || 'Error al eliminar el libro');
-                }
-            })
-            .catch(err => {
-                console.error('Error:', err);
-                alert('Error al eliminar el libro. Por favor, intenta de nuevo.');
-            });
-        }
-    }
-
-    /**
-     * Actualiza index.php si está abierto
-     */
-    updateIndex() {
-        console.log('BookManager: Actualizando index.php si está abierto');
-        if (window.opener && !window.opener.closed) {
-            window.opener.location.reload();
-        }
+        .catch(err => console.error('Error al guardar:', err));
     }
 }
 
-// Iniciar el gestor de libros cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
     new BookManager();
 });
