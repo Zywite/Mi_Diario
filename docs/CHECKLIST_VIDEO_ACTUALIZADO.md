@@ -1,6 +1,6 @@
-# Checklist Video Entrega 3 - Con jQuery
+# Checklist Video Entrega 3 - Para Presentación Individual con jQuery
 
-## PARTE 1: CRUD - Eliminar y Actualizar (2 min)
+## PARTE 1: CRUD - Eliminar y Actualizar (1.5 min)
 
 ### Antes de Grabar
 - [ ] Base de datos está actualizada
@@ -9,7 +9,7 @@
 - [ ] F12 abierto (DevTools)
 
 ### Durante la grabación
-- [ ] Persona 1: Explica qué es CRUD (Create, Read, Update, Delete)
+- [ ] Explica qué es CRUD (Create, Read, Update, Delete)
 - [ ] Mostrar un mensaje existente en la página
 - [ ] **Hacer clic en "Editar" del mensaje**
   - [ ] Se abre formulario
@@ -22,11 +22,11 @@
   - [ ] Confirmar eliminación
   - [ ] ✅ Verificar que desaparece de la página con animación
   - [ ] Mostrar que jQuery lo hizo con `.fadeOut()`
-- [ ] Persona 2: Explicar código PHP (update_message.php, delete_message.php)
+- [ ] Explicar código PHP (update_message.php, delete_message.php)
   - [ ] Mostrar validación: `if ($message['usuario_id'] !== $_SESSION['user_id'])`
   - [ ] Mostrar consulta preparada: `$stmt = $conn->prepare($sql)`
   - [ ] Mostrar respuesta JSON
-- [ ] Persona 2: Explicar código JavaScript
+- [ ] Explicar código JavaScript
   - [ ] Mostrar diferencia: Vanilla JS vs jQuery
   - [ ] Resaltar que jQuery es más limpio
   - [ ] Mostrar `$.ajax()` en lugar de `fetch()`
@@ -46,7 +46,7 @@
 
 ---
 
-## PARTE 2: BOOTSTRAP - 4 Propiedades (2 min)
+## PARTE 2: BOOTSTRAP - 4 Propiedades (1.5 min)
 
 ### Propiedad 1: Grid System (container, row, col)
 - [ ] Mostrar index.php con libros
@@ -173,7 +173,6 @@ $('#login-form').on('submit', function(e) {
 - [ ] Mostrar que es JSON en Request Payload
 - [ ] Mostrar Response como JSON
 - [ ] ✅ Verificar que redirige a index.php
-- [ ] Persona 1: "jQuery hace el AJAX y la redirección"
 - [ ] Mostrar en código:
   - [ ] `$('#login-form').on('submit', function(e)`
   - [ ] `$.ajax({ url: '...', type: 'POST' })`
@@ -277,13 +276,13 @@ Mostrar y explicar estos métodos jQuery usados en el proyecto:
 - [ ] "jQuery simplifica AJAX"
 - [ ] "jQuery proporciona animaciones suaves"
 - [ ] "jQuery está disponible en todas las páginas"
-- [ ] "Nuestro proyecto ahora tiene 2 frameworks: Bootstrap + jQuery"
+- [ ] "Mi proyecto ahora tiene 2 frameworks: Bootstrap + jQuery"
 
 ---
 
 ## PARTE 4: Conclusión (30 segundos)
 
-- [ ] Ambos integrantes hablan
+- [ ] Presentador (tú) habla
 - [ ] Se mencionan todas las tecnologías:
   - [ ] HTML5 / CSS3
   - [ ] Bootstrap 5.3.3 (CSS Framework)
@@ -330,8 +329,8 @@ Mostrar y explicar estos métodos jQuery usados en el proyecto:
 - [ ] Archivos clave listos para mostrar
 
 ### Video
-- [ ] Duración total ~8 minutos
-- [ ] Ambos integrantes hablan
+- [ ] Duración total ~6-7 minutos
+- [ ] Solo presentador (tú) habla
 - [ ] Párrafos clave practicados
 - [ ] Transiciones suaves entre partes
 
@@ -339,13 +338,13 @@ Mostrar y explicar estos métodos jQuery usados en el proyecto:
 
 ## ORDEN DE GRABACIÓN RECOMENDADO
 
-1. **Intro** (30 seg): "Hola somos... presentamos Entrega 3"
-2. **CRUD** (2 min): Editar y eliminar mensajes
-3. **Bootstrap** (2 min): 4 propiedades demostradas
-4. **jQuery** (4 min): Framework, comparativa, funciones
-5. **Conclusión** (30 seg): "Gracias por ver nuestro proyecto"
+1. **Intro** (30 seg): "Hola soy... presento Entrega 3"
+2. **CRUD** (1.5 min): Editar y eliminar mensajes
+3. **Bootstrap** (1.5 min): 4 propiedades demostradas
+4. **jQuery** (3 min): Framework, comparativa, funciones
+5. **Conclusión** (30 seg): "Gracias por ver mi proyecto"
 
-**Total: ~8.5 minutos**
+**Total: ~6.5 minutos**
 
 ---
 
@@ -370,7 +369,7 @@ Mostrar y explicar estos métodos jQuery usados en el proyecto:
 - [ ] ¿jQuery funcionando? ✅ Verificado en Console
 - [ ] ¿Bootstrap visibles? ✅ Clases en DevTools
 - [ ] ¿CRUD completo? ✅ Update y Delete funcionan
-- [ ] ¿Ambos integrantes preparados? ⬜ Practicar guión
+- [ ] ¿Presentador preparado? ⬜ Practicar guión
 - [ ] ¿Audio y video listos? ⬜ Probar equipo
 - [ ] ¿Git actualizado? ✅ Commit hecho
 

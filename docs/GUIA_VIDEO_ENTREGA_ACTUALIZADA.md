@@ -1,17 +1,17 @@
 # Guía Actualizada para Video de Entrega - Entrega 3 (Con jQuery)
 
 ## Estructura General del Video
-- **Duración Total**: ~8 minutos máximo
-- **Parte 1**: Eliminar y actualizar registros (2 min)
-- **Parte 2**: 4 propiedades de Bootstrap (2 min)
-- **Parte 3**: Framework jQuery (4 min)
-- **Ambos integrantes** deben hablar en cada punto
+- **Duración Total**: ~6-7 minutos máximo
+- **Parte 1**: Eliminar y actualizar registros (1.5 min)
+- **Parte 2**: 4 propiedades de Bootstrap (1.5 min)
+- **Parte 3**: Framework jQuery (3 min)
+- **Presentador único**: Tú hablarás en todas las partes
 
 ---
 
-## PARTE 1: ELIMINAR Y ACTUALIZAR REGISTROS (2 minutos)
+## PARTE 1: ELIMINAR Y ACTUALIZAR REGISTROS (1.5 minutos)
 
-### Guión - Persona 1
+### Guión - Presentador
 "Hola, voy a mostrar cómo funciona la actualización y eliminación de mensajes en nuestra aplicación.
 
 Como pueden ver, en la página principal hay un muro de mensajes donde los usuarios pueden interactuar. Veamos cómo editar y eliminar un mensaje."
@@ -23,8 +23,8 @@ Como pueden ver, en la página principal hay un muro de mensajes donde los usuar
 4. Guardar los cambios (mostrar que se actualiza en tiempo real)
 5. Demostrar eliminar un mensaje con confirmación
 
-### Guión - Persona 2
-"Ahora voy a mostrar el código backend que procesa la actualización:
+### Guión - Mostrar el Código
+"Ahora voy a mostrar el código backend que procesa la actualización:"
 
 ```php
 // php/update_message.php
@@ -93,10 +93,10 @@ echo json_encode(['success' => $stmt->execute()]);
 
 ---
 
-## PARTE 2: 4 PROPIEDADES DE BOOTSTRAP (2 minutos)
+## PARTE 2: 4 PROPIEDADES DE BOOTSTRAP (1.5 minutos)
 
-### Guión - Persona 1
-"Nuestro proyecto utiliza Bootstrap como framework CSS. Les voy a mostrar las 4 propiedades principales:
+### Guión
+"Nuestro proyecto utiliza Bootstrap como framework CSS. Les voy a mostrar las 4 propiedades principales:"
 
 **Primera propiedad: Grid System (container, row, col)**
 
@@ -115,7 +115,6 @@ Este grid es responsivo: 3 columnas en desktop, 2 en tablet, 1 en móvil."
 
 *[Redimensionar navegador para mostrar: Desktop → 3 columnas, Tablet → 2 columnas, Móvil → 1 columna]*
 
-### Guión - Persona 2
 "**Segunda propiedad: Flexbox Utilities (d-flex, justify-content, align-items)**
 
 ```html
@@ -133,7 +132,6 @@ Este grid es responsivo: 3 columnas en desktop, 2 en tablet, 1 en móvil."
 
 *[Mostrar en el sitio]*
 
-### Guión - Persona 1
 "**Tercera propiedad: Spacing Utilities (m-*, p-*, mb-*, g-*)**
 
 ```html
@@ -151,7 +149,6 @@ Esto proporciona consistencia visual en todo el sitio."
 
 *[Mostrar cómo los elementos están bien espaciados]*
 
-### Guión - Persona 2
 "**Cuarta propiedad: Components (card, table, btn, form-control)**
 
 ```html
@@ -175,10 +172,11 @@ Estos componentes Bootstrap nos dan un diseño profesional sin escribir CSS pers
 
 ---
 
-## PARTE 3: FRAMEWORK JQUERY (4 minutos)
+## PARTE 3: FRAMEWORK JQUERY (3 minutos)
 
-### Guión - Persona 1
-"Además de Bootstrap, implementamos **jQuery** como framework JavaScript adicional.
+### Introducción a jQuery
+
+"Además de Bootstrap, implementé **jQuery** como framework JavaScript adicional.
 
 ¿Por qué jQuery?
 1. Simplifica la manipulación del DOM
@@ -189,7 +187,8 @@ Estos componentes Bootstrap nos dan un diseño profesional sin escribir CSS pers
 
 Veamos cómo está implementado en el proyecto."
 
-### Guión - Persona 2
+### Verificar jQuery está cargado
+
 "jQuery está cargado en header.php y disponible en TODAS las páginas:
 
 ```html
@@ -197,14 +196,15 @@ Veamos cómo está implementado en el proyecto."
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 ```
 
-Ahora verifiquemos que jQuery está disponible:"
+Verifiquemos que jQuery está disponible:"
 
 *[Abrir F12 → Console]
 *[Escribir: `$.fn.jquery` y mostrar que responde: "3.6.0"]*
 
 "Esto confirma que jQuery está cargado correctamente en todas nuestras páginas."
 
-### Guión - Persona 1
+### Comparar Vanilla JS vs jQuery
+
 "Veamos cómo jQuery simplifica el código. En login.php:
 
 **SIN jQuery (Vanilla JavaScript)**:
@@ -252,8 +252,9 @@ $('#login-form').on('submit', function(e) {
 - Más legible
 - Más fácil de mantener"
 
-### Guión - Persona 2
-"En register.php implementamos validación en tiempo real:
+### jQuery en register.php
+
+"En register.php implementé validación en tiempo real:
 
 ```javascript
 // jQuery: Validación mientras se escribe
@@ -277,8 +278,9 @@ Veamos en el navegador:"
 
 "La validación ocurre en tiempo real, sin esperar al servidor."
 
-### Guión - Persona 1
-"También creamos un archivo main.js con jQuery que proporciona funcionalidades globales:
+### Funciones globales en main.js
+
+"También creé un archivo main.js con jQuery que proporciona funcionalidades globales:
 
 ```javascript
 // main.js - Funciones helper con jQuery
@@ -317,7 +319,6 @@ Estas funciones se usan en login.php y register.php:"
 
 *[Mostrar cómo se usa en el código]*
 
-### Guión - Persona 2
 "jQuery también proporciona animaciones:
 
 ```javascript
@@ -334,7 +335,8 @@ $(this).closest('.alert')
 
 Esto mejora significativamente la experiencia del usuario."
 
-### Guión - Persona 1
+### Resumen de jQuery
+
 "**Resumen de jQuery en nuestro proyecto**:
 
 ✅ **Ubicación**: 
@@ -361,7 +363,7 @@ jQuery es un framework establecido, confiable y ampliamente usado en la industri
 
 ## CONCLUSIÓN (30 segundos)
 
-**Ambos**: "Como han visto, nuestro proyecto implementa:
+"Como han visto, en este proyecto implementé:
 1. **Bootstrap** para diseño responsivo
 2. **jQuery** para interactividad
 3. **HTML/CSS/JavaScript** bien estructurado
@@ -399,21 +401,19 @@ Todo integrado profesionalmente. ¡Gracias!"
 
 ## SCRIPT DE INTRO
 
-**Persona 1**: "Hola, somos [Nombre 1] y [Nombre 2]. Hoy presentamos la **Entrega 3** de **Mi Diario de Lectura**, un sitio web con gestión de libros, usuarios y mensajes."
+**Presentador**: "Hola, soy [Tu Nombre]. Hoy presento la **Entrega 3** de **Mi Diario de Lectura**, un sitio web con gestión de libros, usuarios y mensajes."
 
-**Persona 2**: "En este video explicaremos:"
+"En este video explicaré:"
 1. "Cómo actualizar y eliminar mensajes (CRUD)"
 2. "Las 4 propiedades principales de Bootstrap"
-3. "jQuery, el framework adicional que implementamos"
+3. "jQuery, el framework adicional que implementé"
 
-**Ambos**: "¡Comencemos!"
+"¡Comencemos!"
 
 ---
 
 ## SCRIPT DE CIERRE
 
-**Persona 1**: "Como han visto, implementamos todas las funcionalidades requeridas..."
+**Presentador**: "Como han visto, implementé todas las funcionalidades requeridas con Bootstrap para el diseño y jQuery para la interactividad.
 
-**Persona 2**: "Con Bootstrap para el diseño y jQuery para la interactividad..."
-
-**Ambos**: "¡Gracias por ver nuestro proyecto!"
+¡Gracias por ver mi proyecto!"
